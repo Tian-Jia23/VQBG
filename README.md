@@ -32,13 +32,13 @@ VStrains is a de Novo reconstruction of viral quasispecies from bubble graphs.
 <a name="sec2"></a>
 # Updates
 
-## VStrains 1.1.0 Release (03 Feb 2023)
+## VQBG 1.1.0 Release (03 Feb 2023)
 
 
 <a name="sec3"></a>
 # Installation
 
-VStrains requires a 64-bit Linux system or Mac OS and python (supported versions are python3: 3.2 and higher).
+VQBG requires a 64-bit Linux system or Mac OS and python (supported versions are python3: 3.2 and higher).
 
 <a name="sec3.3"></a>
 ## Download & Install VStrains
