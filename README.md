@@ -49,16 +49,16 @@ After successfully setup the environment and dependencies, clone the VStrains in
 git clone https://github.com/Tian-Jia23/VQBG.git
 ```
 
-Install the VStrains via `Pip`
+Install the VQBG via `Pip`
 
 ```bash
-cd VStrains; pip install .
+cd VQBG; pip install .
 ```
 
 Run the following commands to ensure VStrains is correctly setup & installed.
 
 ```bash
-vstrains -h
+vqbg -h
 ```
 
 ## Quick Usage
@@ -94,7 +94,7 @@ python spades.py -1 forward.fastq -2 reverse.fastq --careful -t 16 -o output_dir
 Both assembly graph (`assembly_graph_after_simplification.gfa`) and contig information (`contigs.paths`) can be found in the output directory after running SPAdes assembler. Please use them together with raw reads as inputs for VStrains, and set `-a` flag to `spades`. Example usage as below:
 
 ```bash
-vstrains -a spades -g assembly_graph_after_simplification.gfa -p contigs.paths -o output_dir -fwd forward.fastq -rve reverse.fastq
+vqbg -k 25 -q -o path.fasta -i forward.fastq -i reverse.fastq
 ```
 
 <a name="sec4.3"></a>
