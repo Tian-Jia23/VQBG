@@ -61,55 +61,6 @@ Run the following commands to ensure VStrains is correctly setup & installed.
 vqbg -h
 ```
 
-## Quick Usage
-
-```
-usage: VStrains [-h] -a {spades} -g GFA_FILE [-p PATH_FILE] [-o OUTPUT_DIR] -fwd FWD -rve RVE
-
-Construct full-length viral strains under de novo approach from contigs and assembly graph, currently supports
-SPAdes
-
-optional arguments:
-        --reads/-i <string>: the name of the file containing reads
-        ** Optional :
-        --kmer_length/-k <int> : length of kmer, default: 25.
-        --fasta/-a : input reads file is in fasta format.
-        --fastq/-q : input reads file is in fastq format.
-        --output_filename/-o <string> : Name of the output file, default: paths.fasta.
-        --help/-h : display the help information.
-
-
-VStrains takes as input an assembly graph in Graphical Fragment Assembly (GFA) Format and associated contig information, together with the raw reads in paired-end format (e.g., forward.fastq, reverse.fastq).
-
-<a name="sec4.2"></a>
-## Support SPAdes
-
-When running SPAdes, we recommend to use `--careful` option for more accurate assembly results. Do not modify any contig/node name from the SPAdes assembly results for consistency. Please refer to [SPAdes](https://github.com/ablab/spades) for further guideline. Example usage as below:
-
-```bash
-# SPAdes assembler example, pair-end reads
-python spades.py -1 forward.fastq -2 reverse.fastq --careful -t 16 -o output_dir
-```
-
-Both assembly graph (`assembly_graph_after_simplification.gfa`) and contig information (`contigs.paths`) can be found in the output directory after running SPAdes assembler. Please use them together with raw reads as inputs for VStrains, and set `-a` flag to `spades`. Example usage as below:
-
-```bash
-vqbg -k 25 -q -o path.fasta -i forward.fastq -i reverse.fastq
-```
-
-<a name="sec4.3"></a>
-## Output
-
-
-VStrains stores all output files in `<output_dir>`, which is set by the user.
-
-* `<output_dir>/aln/` directory contains paired-end (PE) linkage information, which is stored in `pe_info` and `st_info`.
-* `<output_dir>/gfa/` directory contains iteratively simplified assembly graphs, where `graph_L0.gfa` contains the assembly graph produced by SPAdes after Strandedness Canonization, `split_graph_final.gfa` contains the assembly graph after Graph Disentanglement, and `graph_S_final.gfa` contains the assembly graph after Contig-based Path Extraction, the rests are intermediate results. All the assembly graphs are in [GFA 1.0 format](https://github.com/GFA-spec/GFA-spec/blob/master/GFA1.md).
-* `<output_dir>/paf/` and `<output_dir>/tmp/` are temporary directories, feel free to ignore them.
-* `<output_dir>/strain.fasta` contains resulting strains in `.fasta`, the headers for each strain has the form `NODE_<strain name>_<sequence length>_<coverage>` which is compatiable to SPAdes contigs format.
-* `<output_dir>/strain.paths` contains paths in the assembly graph (input `GFA_FILE`) corresponding to `strain.fasta` using [Bandage](https://github.com/rrwick/Bandage) for further downstream analysis.
-* `<output_dir>/vstrains.log` contains the VStrains log.
-<!-- <a name="sec3.3"></a> -->
 <!-- ## Parameters -->
 
 <!-- ### Minimum Node Coverage
@@ -126,7 +77,7 @@ Since SPAdes normally output all the nodes from assembly graph as contigs, short
 `evals/quast_evaluation.py` is a wrapper script for strain-level experimental result analysis using [MetaQUAST](https://github.com/ablab/quast).
 
 ```
-usage: quast_evaluation.py [-h] -quast QUAST [-cs FILES [FILES ...]] [-d IDIR] -ref REF_FILE -o OUTPUT_DIR
+usage: metaquast.py ../he/bubble_graph/3path_str.fasta ../b-result/3ZIKV/SPAdes.fasta ../b-result/3ZIKV/VStrain.fasta ../b-result/3ZIKV/Haploflow.fa -o ../he/bubble_graph/3 -r ../A-data/3Zika-20000x/3ZIKV/1.fasta,../A-data/3Zika-20000x/3ZIKV/2.fasta,../A-data/3Zika-20000x/3ZIKV/3.fasta --unique-mapping
 
 Use MetaQUAST to evaluate assembly result
 
