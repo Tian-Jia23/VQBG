@@ -43,7 +43,7 @@ VQBG requires a 64-bit Linux system or Mac OS and python (supported versions are
 <a name="sec3.3"></a>
 ## Download & Install VStrains
 
-After successfully setup the environment and dependencies, clone the VStrains into your desirable place.
+After successfully setup the environment and dependencies, clone the VQBG into your desirable place.
 
 ```bash
 git clone https://github.com/Tian-Jia23/VQBG.git
@@ -55,7 +55,7 @@ Install the VQBG via `Pip`
 cd VQBG; pip install .
 ```
 
-Run the following commands to ensure VStrains is correctly setup & installed.
+Run the following commands to ensure VQBG is correctly setup & installed.
 
 ```bash
 vqbg -h
