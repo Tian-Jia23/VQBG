@@ -1,31 +1,8 @@
 # VQBG ：De Novo Reconstruction of Viral Quasispecies from Bubble Graphs
 
-
-Manual
-===========
-
-Table of Contents
------------------
-
-1. [About VStrains](#sec1) </br>
-2. [Updates](#sec2) </br>
-3. [Installation](#sec3) </br>
-   3.1. [Option 1. Quick Install](#sec3.1) </br>
-   3.2. [Option 2. Manual Install](#sec3.2) </br>
-   3.3. [Download & Install VStrains](#sec3.3) </br>
-4. [Running VStrains](#sec4) </br>
-   4.1. [Quick Usage](#sec4.1) </br>
-   4.2. [Support SPAdes](#sec4.2) </br>
-   4.3. [Output](#sec4.3) </br>
-5. [Stand-alone binaries](#sec5) </br>
-6. [Experiment](#sec6) </br>
-7. [Citation](#sec7) </br>
-8. [Feedback and bug reports](#sec8)</br>
-
-<a name="sec1"></a>
 # About VQBG
 
-VStrains is a de Novo reconstruction of viral quasispecies from bubble graphs.
+VQBG is a de Novo reconstruction of viral quasispecies from bubble graphs.
 
 <!-- Please refer to our [paper](NULL) and [supplementary Material](NULL) for details methodology. -->
 
@@ -77,7 +54,7 @@ Since SPAdes normally output all the nodes from assembly graph as contigs, short
 `evals/quast_evaluation.py` is a wrapper script for strain-level experimental result analysis using [MetaQUAST](https://github.com/ablab/quast).
 
 ```
-usage: metaquast.py ../he/bubble_graph/3path_str.fasta ../b-result/3ZIKV/SPAdes.fasta ../b-result/3ZIKV/VStrain.fasta ../b-result/3ZIKV/Haploflow.fa -o ../he/bubble_graph/3 -r ../A-data/3Zika-20000x/3ZIKV/1.fasta,../A-data/3Zika-20000x/3ZIKV/2.fasta,../A-data/3Zika-20000x/3ZIKV/3.fasta --unique-mapping
+usage:  metaquast.py --unique-mapping <f1.fasta> <f2.fasta> ... <fm.fasta> -o <output dir> -R <ref1.fasta>,<ref2.fasta>,...,<refn.fasta>
 
 Use MetaQUAST to evaluate assembly result
 
